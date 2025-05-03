@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecdysiz - Image Compressor</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://unpkg.com/svgo@2.8.0/dist/svgo.browser.js"></script>
+  <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+          <h1>Image Compressor by <span class="highlight">Ecdysiz</span></h1>
+          <p>Compress PNG, JPG, WebP, and SVG images with high quality and download instantly</p>
+        </div>
+    
+        <div class="tool-container">
+          <form id="imageCompressorForm">
+            <div class="form-group">
+              <label>Upload Images</label>
+              <div class="file-upload">
+                <div class="file-upload-btn">
+                  <div class="file-upload-icon">📁</div>
+                  <span>Drag & Drop or Click to Upload</span>
+                  <span class="upload-text">Supported formats: PNG, JPG, WebP, SVG (Max: 10MB per file)</span>
+                </div>
+                <input type="file" id="imageUpload" accept="image/png, image/jpeg, image/webp, image/svg+xml" multiple>
+              </div>
+              <div class="file-list" id="fileList"></div>
+            </div>
+    
+            <div class="quality-control">
+              <label>Image Quality (%)</label>
+              <input type="range" id="qualitySlider" min="10" max="100" value="80" step="5">
+              <div class="quality-value" id="qualityValue">Quality: 80%</div>
+            </div>
+    
+            <div class="btn-container">
+              <button type="button" class="btn" id="compressBtn" disabled>COMPRESS IMAGES</button>
+            </div>
+          </form>
+    
+          <div class="loading" id="loading" style="display: none;"></div>
+    
+          <div class="result-container" id="resultContainer" style="display: none;">
+            <h3>Compression Results</h3>
+            <p>Here are the details of your compressed images:</p>
+            
+            <div class="summary" id="summary" style="display: none;">
+              <div class="summary-grid">
+                <div class="info-item">
+                  <div class="info-label">Total Original Size</div>
+                  <div class="info-value" id="totalOriginalSize">0 KB</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Total Compressed Size</div>
+                  <div class="info-value" id="totalCompressedSize">0 KB</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Overall Reduction</div>
+                  <div class="info-value" id="overallReduction">0%</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="btn-container" id="downloadAllContainer" style="display: none;">
+              <button class="btn" id="downloadAllBtn">DOWNLOAD ALL AS ZIP</button>
+            </div>
+            
+            <div id="imageResults"></div>
+          </div>
+        </div>
+      </div>
+
+      <script src="index.js"></script>
+</body>
+</html>
